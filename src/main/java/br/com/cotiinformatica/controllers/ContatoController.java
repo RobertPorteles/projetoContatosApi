@@ -19,52 +19,43 @@ import br.com.cotiinformatica.entities.Contato;
 
 import br.com.cotiinformatica.repositories.ContatosRepository;
 
-@RestController // Usar @RestController para APIs REST (em vez de @Controller)
-@RequestMapping("/api/contatos") // Prefixo das rotas
+@RestController
+@RequestMapping("/api/contatos") 
 public class ContatoController {
 
     @Autowired
     private ContatosRepository contatoRepository;
 
-    // TODO: Criar um novo contato (POST)
+  
     @PostMapping
     public ResponseEntity<Contato> criar(@RequestBody Contato contato) {
         Contato novo = contatoRepository.save(contato);
         return ResponseEntity.ok(novo);
     }
 
-    // TODO: Listar todos os contatos (GET)
-    @GetMapping
-    public ResponseEntity<List<Contato>> listarTodos() {
-        List<Contato> contatos = contatoRepository.findAll();
-        return ResponseEntity.ok(contatos);
-    }
 
-    // TODO: Buscar contato por ID (GET)
     @GetMapping("/{id}")
-    public ResponseEntity<Contato> buscarPorId(@PathVariable Integer id) {
+    public ResponseEntity<Contato> buscarPorId(@PathVariable("id") Integer id) {
         Optional<Contato> contato = contatoRepository.findById(id);
         return contato.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
-    // TODO: Atualizar um contato (PUT)
     @PutMapping("/{id}")
-    public ResponseEntity<Contato> atualizar(@PathVariable Integer id, @RequestBody Contato contato) {
+    public ResponseEntity<Contato> atualizar(@PathVariable("id") Integer id, @RequestBody Contato contato) {
         if (!contatoRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
         }
-        contato.setIdContato(id); // Garante que está atualizando o contato correto
+        contato.setIdContato(id);
         Contato atualizado = contatoRepository.save(contato);
         return ResponseEntity.ok(atualizado);
     }
 
-    // TODO: Deletar um contato (DELETE)
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Integer id) {
+    public ResponseEntity<Void> deletar(@PathVariable("id") Integer id) {
         if (!contatoRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
         }
-        contatoRepository.deleteById(id);
+        contatoRepository.deleteById(id);	
         return ResponseEntity.noContent().build();
     }
 }
