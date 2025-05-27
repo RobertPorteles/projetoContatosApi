@@ -1,7 +1,5 @@
-
 package br.com.cotiinformatica.controllers;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.cotiinformatica.entities.Contato;
-
 import br.com.cotiinformatica.repositories.ContatosRepository;
 
 @RestController
