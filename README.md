@@ -35,34 +35,6 @@ projetoContatosApi
 
 ## 🗄️ Banco de Dados - PostgreSQL com Docker
 
-### ✅ Arquivo `/docker-compose.yml`
-
-```yaml
-version: '3.8'
-services:
-  db:
-    image: postgres:15
-    container_name: postgres_contatos
-    environment:
-      POSTGRES_DB: contatosdb
-      POSTGRES_USER: contatosuser
-      POSTGRES_PASSWORD: contatospass
-    ports:
-      - "5432:5432"
-```
-
-### ✅ Configuração `/src/main/resources/application.properties`
-
-```properties
-spring.datasource.url=jdbc:postgresql://localhost:5432/contatosdb
-spring.datasource.username=contatosuser
-spring.datasource.password=contatospass
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-spring.jpa.properties.hibernate.format_sql=true
-springdoc.api-docs.path=/api-docs
-springdoc.swagger-ui.path=/swagger-ui.html
-```
 
 ## 🧱 Entidade `Contato`
 
@@ -175,19 +147,4 @@ public class ContatosController {
 3. Execute a aplicação com o Spring Boot (`mvn spring-boot:run` ou pelo IDE).
 
 4. Acesse:  
-   ➡️ [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html) 
-
-## 📌 Dicas Importantes
-
-✅ Mapeie corretamente a entidade com JPA.  
-✅ Configure a conexão no `application.properties`.  
-✅ Use Swagger para testar facilmente os endpoints.  
-✅ Use `@RestController` e `@RequestMapping` para organização.  
-✅ Sempre versionar o código e usar Git.
-
-## ✅ Próximos passos sugeridos
-
-- Implementar DTOs para não expor diretamente a entidade `Contato`.
-- Adicionar validação com `@Valid`.
-- Implementar tratamento de exceções global com `@ControllerAdvice`.
-- Criar testes unitários e de integração.
+   ➡️ [http://localhost:8081/swagger-ui.html](http://localhost:8081/swagger-ui.html) 
